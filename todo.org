@@ -1,0 +1,54 @@
+* UI Features
+
+** Tinder like Drag Exploration [0/3]
+
+- [ ] create app that runs in OSX, Android and iOS
+- [ ] get sample bird asset pic
+- [ ] load pic into a container
+- [ ] research hot to visualize drag
+
+** TODO Tinder like Drag Implementation [/]
+
+[ ] tbd
+
+* Database Features
+
+** TODO DB Packet Generation [/]
+
+this is all about generating a packet from a curated database
+
+** TODO DB Packet Import [/]
+
+- [ ] install sqlite
+- [ ] determine how/where to store databases
+- [ ] consume database via queries
+
+*
+
+** HOLD DB Packet Fetching [/]
+
+- [ ] how do we fetch databases in case one would be purchased?
+
+* Quiz Generation
+
+** TODO Algorithm to generate quiz [/]
+
+- [ ] talk to Stephan about the fields to use when picking out similar birds
+- [ ] what fields to compare how for different difficulty levels?
+- [ ] can we come up with some groups from which we randomly select a string?
+- [ ] write out algorithm and test it
+
+** TODO Algorithm Integration with Database [/]
+
+- [ ] query all rows matching a field as determined by algorithm
+- [ ] randomly select four rows to serve as possible answers
+- [ ] randomly select one of those to be shown and the correct answer
+- [ ] prevent dumb duplicates via [[*Smart Sample Selection][Smart Sample Selection]]
+
+* Quiz Adaptation
+
+** TODO Smart Sample Selection [/]
+
+- [ ] learn from user answers which birds need most practice
+- [ ] store amount of time birds have been part of a question
+- [ ] store how many times user got them right
