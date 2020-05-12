@@ -1,15 +1,35 @@
 * UI Features
 
-** Tinder like Drag Exploration [0/3]
+** Tinder like Drag Exploration [7/7]
+:LOGBOOK:
+CLOCK: [2020-05-11 Mon 18:49]--[2020-05-11 Mon 19:19] =>  0:30
+CLOCK: [2020-05-08 Fri 09:22]--[2020-05-08 Fri 09:34] =>  0:12
+:END:
 
-- [ ] create app that runs in OSX, Android and iOS
-- [ ] get sample bird asset pic
-- [ ] load pic into a container
-- [ ] research hot to visualize drag
+- [X] create app that runs in OSX, Android and iOS
+- [X] add yaml support to emacs
+- [X] adapt emacs settings to work with dart efficiently
+- [X] figure out hot restart/reload from emacs
+- [X] get sample bird asset pic
+- [X] load pic into a container
+- [X] research how to visualize drag
+  
+** Tinder Drag sample apps
 
-** TODO Tinder like Drag Implementation [/]
+- [[https://github.com/Ivaskuu/tinder_cards][Ivaskuu/tinder_cards]] looks like it does exactly what we want 
+  - using GestureDetector and Alignment
+- [[https://medium.com/flutterpub/flutter-tinder-like-swipe-cards-2c189ca516eb][Tinder like swipe cards blog]] uses /Draggable/
+- [[https://github.com/parikshitgupta1/Flutter-Swipe-][parikshitgupta1/Flutter-Swipe]] uses /Draggable/ 
+  
+** TODO Tinder like Drag Implementation [2/4]
+:LOGBOOK:
+CLOCK: [2020-05-11 Mon 19:21]--[2020-05-11 Mon 20:14] =>  0:53
+:END:
 
-[ ] tbd
+- [X] port implementation from [[https://github.com/Ivaskuu/tinder_cards][Ivaskuu/tinder_cards]]
+- [X] adapt it to our needs
+- [ ] add more sample bird pics
+- [ ] implement swipe up and down  
 
 * Database Features
 
