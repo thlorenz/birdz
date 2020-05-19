@@ -1,14 +1,19 @@
-import 'package:birdz/bird.dart';
+import 'dart:ui' as ui;
+
+import 'package:birdz/bird.dart' show Bird;
+import 'package:birdz/util/images.dart';
 import 'package:birdz/widgets/bird_widget.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  final birdImage = Image.asset('assets/image/bird.jpg');
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final birdImage = await Images.loadFromMemory('assets/images/bird.jpg');
   runApp(MyApp(birdImage: birdImage));
 }
 
 class MyApp extends StatelessWidget {
-  final Image birdImage;
+  final ui.Image birdImage;
 
   const MyApp({@required this.birdImage}) : super();
 
@@ -21,19 +26,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(widgetTitle: 'Birdz'),
+      home: MyHomePage(widgetTitle: 'Birdz', birdImage: birdImage),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final Image birdImage;
+  final ui.Image birdImage;
   final String widgetTitle;
 
   MyHomePage({@required this.widgetTitle, @required this.birdImage}) : super();
 
   // TODO: convert Image to ui.Image somehow
-  _MyHomePageState createState() => _MyHomePageState(Bird());
+  _MyHomePageState createState() => _MyHomePageState(Bird(image: birdImage));
 }
 
 class _MyHomePageState extends State<MyHomePage> {
