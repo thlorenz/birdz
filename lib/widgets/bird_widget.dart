@@ -28,9 +28,9 @@ class BirdWidget extends StatelessWidget {
           color: const Color(0xff7c94b6),
           border: Border.all(
             color: Colors.black,
-            width: 8,
+            width: 4,
           ),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: _EmbeddedBirdWidget(bird),
       ),
@@ -40,25 +40,20 @@ class BirdWidget extends StatelessWidget {
 
 class _EmbeddedBirdWidget extends LeafRenderObjectWidget {
   final Bird bird;
-  final Size size;
 
-  const _EmbeddedBirdWidget(this.bird, {this.size});
+  const _EmbeddedBirdWidget(this.bird);
 
   RenderBox createRenderObject(BuildContext context) {
     return RenderConstrainedBox(
         child: _BirdRenderBox(context, bird),
-        additionalConstraints: BoxConstraints.expand(
-          width: size?.width,
-          height: size?.height,
-        ));
+        additionalConstraints: BoxConstraints.expand());
   }
 
   void updateRenderObject(
       BuildContext context, RenderConstrainedBox renderBox) {
     renderBox
       ..child = _BirdRenderBox(context, bird)
-      ..additionalConstraints =
-          BoxConstraints.expand(width: size?.width, height: size?.height);
+      ..additionalConstraints = BoxConstraints.expand();
   }
 }
 
@@ -73,7 +68,8 @@ class _BirdRenderBox extends RenderBox with WidgetsBindingObserver {
 
   void performResize() {
     super.performResize();
-    bird.resize(constraints.smallest);
+    size = constraints.biggest;
+    bird.resize(constraints.biggest);
   }
 
   void attach(PipelineOwner owner) {

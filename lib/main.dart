@@ -1,6 +1,6 @@
 import 'dart:ui' as ui;
 
-import 'package:birdz/bird.dart' show Bird;
+import "package:birdz/bird.dart" show Bird;
 import 'package:birdz/util/images.dart';
 import 'package:birdz/widgets/bird_widget.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(widgetTitle: 'Birdz', birdImage: birdImage),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -34,11 +35,13 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final ui.Image birdImage;
   final String widgetTitle;
+  final EdgeInsets margins = EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0);
 
   MyHomePage({@required this.widgetTitle, @required this.birdImage}) : super();
 
   // TODO: convert Image to ui.Image somehow
-  _MyHomePageState createState() => _MyHomePageState(Bird(image: birdImage));
+  _MyHomePageState createState() =>
+      _MyHomePageState(Bird(image: birdImage, margins: margins));
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -48,12 +51,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          centerTitle: true,
-          title: Text(widget.widgetTitle),
-        ),
-        body: SafeArea(child: BirdWidget(bird)));
+    return Scaffold(body: SafeArea(child: BirdWidget(bird)));
   }
 }

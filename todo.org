@@ -27,6 +27,8 @@ CLOCK: [2020-05-08 Fri 09:22]--[2020-05-08 Fri 09:34] =>  0:12
   
 ** TODO Tinder like Drag Implementation [2/4]
 :LOGBOOK:
+CLOCK: [2020-05-19 Tue 18:35]
+CLOCK: [2020-05-18 Mon 18:37]--[2020-05-18 Tue 20:15] => 1:38
 CLOCK: [2020-05-11 Mon 19:21]--[2020-05-11 Mon 20:14] =>  0:53
 :END:
 
@@ -35,7 +37,7 @@ CLOCK: [2020-05-11 Mon 19:21]--[2020-05-11 Mon 20:14] =>  0:53
 - [ ] reimplement using canvas
 - [ ] add more sample bird pics
 - [ ] implement swipe up and down  
-
+  
 * Database Features
 
 ** TODO DB Packet Generation [/]
