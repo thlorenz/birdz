@@ -10,13 +10,14 @@ final _backgroundPaint = Paint()
 
 enum Direction { Left, Right, Up, Down }
 
-const _stepDelta = 50.0;
+const _animationScale = 0.25;
 
 class Bird {
   final Image image;
   final Offset origin;
   Direction currentDirection;
   bool _animating;
+  Offset _animationVector;
 
   Size _size;
 
@@ -38,21 +39,9 @@ class Bird {
   update(double ts) {
     if (!_animating) return;
     assert(currentDirection != null, 'cannot animate without direction');
+    assert(_animationVector != null, 'cannot animate a vector');
 
-    switch (currentDirection) {
-      case Direction.Left:
-        position = position.translate(-_stepDelta, 0);
-        break;
-      case Direction.Right:
-        position = position.translate(_stepDelta, 0);
-        break;
-      case Direction.Up:
-        position = position.translate(0, -_stepDelta);
-        break;
-      case Direction.Down:
-        position = position.translate(0, _stepDelta);
-        break;
-    }
+    position = position.translate(_animationVector.dx, _animationVector.dy);
     if (this._outOfBounds()) {
       _animating = false;
       currentDirection = null;
@@ -71,6 +60,9 @@ class Bird {
       position = origin;
     } else {
       _animating = true;
+      _animationVector =
+          Offset(position.dx - origin.dx, position.dy - origin.dy)
+              .scale(_animationScale, _animationScale);
     }
   }
 
