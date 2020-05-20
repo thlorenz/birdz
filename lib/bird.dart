@@ -13,6 +13,7 @@ enum Direction { Left, Right, Up, Down }
 class Bird {
   final Image image;
   final Offset origin;
+  Direction currentDirection;
   Size _size;
 
   Offset position;
@@ -28,10 +29,32 @@ class Bird {
   update(double ts) {}
 
   void moveBy(Offset delta) {
+    currentDirection = this._determineDirection();
     position += delta;
   }
 
-  void maybeCommit() {}
+  void maybeCommit() {
+    if (currentDirection == null) {
+      position = origin;
+    } else {
+      debugPrint('dir: $currentDirection');
+      position = origin;
+    }
+  }
+
+  Direction _determineDirection() {
+    const minDelta = 100.0;
+    final dx = position.dx - origin.dx;
+    final dy = position.dy - origin.dy;
+    final absDx = dx.abs();
+    final absDy = dy.abs();
+    if (absDx < minDelta && absDy < minDelta) return null;
+    if (absDx > absDy) {
+      return dx < 0 ? Direction.Left : Direction.Right;
+    } else {
+      return dy < 0 ? Direction.Up : Direction.Down;
+    }
+  }
 
   void _debugCanvas(Canvas canvas) {
     canvas.drawRect(

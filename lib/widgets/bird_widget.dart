@@ -28,6 +28,9 @@ class BirdWidget extends StatelessWidget {
         onPanUpdate: (details) {
           bird.moveBy(details.delta);
         },
+        onPanEnd: (details) {
+          bird.maybeCommit();
+        },
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xff7c94b6),
