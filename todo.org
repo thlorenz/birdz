@@ -25,9 +25,9 @@ CLOCK: [2020-05-08 Fri 09:22]--[2020-05-08 Fri 09:34] =>  0:12
 - [[https://medium.com/flutterpub/flutter-tinder-like-swipe-cards-2c189ca516eb][Tinder like swipe cards blog]] uses /Draggable/
 - [[https://github.com/parikshitgupta1/Flutter-Swipe-][parikshitgupta1/Flutter-Swipe]] uses /Draggable/ 
   
-** TODO Tinder like Drag Implementation [3/6]
+** TODO Tinder like Drag Implementation [4/6]
 :LOGBOOK:
-CLOCK: [2020-05-19 Tue 18:35]
+CLOCK: [2020-05-19 Tue 18:35]--[2020-05-19 Tue 20:17] =>  1:42
 CLOCK: [2020-05-18 Mon 18:37]--[2020-05-18 Tue 20:15] => 1:38
 CLOCK: [2020-05-11 Mon 19:21]--[2020-05-11 Mon 20:14] =>  0:53
 :END:
@@ -35,7 +35,8 @@ CLOCK: [2020-05-11 Mon 19:21]--[2020-05-11 Mon 20:14] =>  0:53
 - [X] port implementation from [[https://github.com/Ivaskuu/tinder_cards][Ivaskuu/tinder_cards]]
 - [X] adapt it to our needs
 - [X] get drag in general working for canvas
-- [ ] reimplement animation using canvas
+- [X] reimplement animation using canvas
+- [ ] highlight solution we will commit to once a swipe direction comes clear
 - [ ] add more sample bird pics
 - [ ] implement swipe up and down  
   
