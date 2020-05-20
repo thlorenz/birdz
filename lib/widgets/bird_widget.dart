@@ -4,6 +4,7 @@ import 'package:flutter/material.dart'
         BuildContext,
         Colors,
         Container,
+        GestureDetector,
         LeafRenderObjectWidget,
         PaintingContext,
         RenderBox,
@@ -23,16 +24,21 @@ class BirdWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: background,
-      child: Container(
-        decoration: BoxDecoration(
-          color: const Color(0xff7c94b6),
-          border: Border.all(
-            color: Colors.black,
-            width: 4,
+      child: GestureDetector(
+        onPanUpdate: (details) {
+          bird.moveBy(details.delta);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xff7c94b6),
+            border: Border.all(
+              color: Colors.black,
+              width: 4,
+            ),
+            borderRadius: BorderRadius.circular(8),
           ),
-          borderRadius: BorderRadius.circular(8),
+          child: _EmbeddedBirdWidget(bird),
         ),
-        child: _EmbeddedBirdWidget(bird),
       ),
     );
   }

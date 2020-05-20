@@ -35,13 +35,13 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final ui.Image birdImage;
   final String widgetTitle;
-  final EdgeInsets margins = EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0);
+  final Offset origin = Offset(10.0, 10.0);
 
   MyHomePage({@required this.widgetTitle, @required this.birdImage}) : super();
 
   // TODO: convert Image to ui.Image somehow
   _MyHomePageState createState() =>
-      _MyHomePageState(Bird(image: birdImage, margins: margins));
+      _MyHomePageState(Bird(image: birdImage, origin: origin));
 }
 
 class _MyHomePageState extends State<MyHomePage> {

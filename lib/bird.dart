@@ -1,20 +1,25 @@
-import 'dart:ui' show Canvas, Image, Paint, Rect, Size;
+import 'dart:ui' show Canvas, Image, Offset, Paint, Rect, Size;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show Colors, required;
-import 'package:flutter/rendering.dart'
-    show Canvas, EdgeInsets, Paint, PaintingStyle, Size;
+import 'package:flutter/rendering.dart' show Canvas, Paint, PaintingStyle, Size;
 
 final _backgroundPaint = Paint()
   ..style = PaintingStyle.fill
   ..color = Colors.white;
 
+enum Direction { Left, Right, Up, Down }
+
 class Bird {
   final Image image;
-  final EdgeInsets margins;
+  final Offset origin;
   Size _size;
 
-  Bird({@required this.image, @required this.margins});
+  Offset position;
+
+  Bird({@required this.image, @required this.origin}) {
+    position = Offset(origin.dx, origin.dy);
+  }
 
   resize(Size size) {
     _size = size;
@@ -22,11 +27,17 @@ class Bird {
 
   update(double ts) {}
 
+  void moveBy(Offset delta) {
+    position += delta;
+  }
+
+  void maybeCommit() {}
+
   void _debugCanvas(Canvas canvas) {
     canvas.drawRect(
         Rect.fromLTRB(
-          margins.left,
-          margins.top,
+          origin.dx,
+          origin.dy,
           _size.width,
           _size.height,
         ),
@@ -34,8 +45,8 @@ class Bird {
   }
 
   render(Canvas canvas) {
-    final width = _size.width - margins.left;
-    final height = _size.height - margins.top;
+    final width = _size.width - origin.dx;
+    final height = _size.height - origin.dy;
     _debugCanvas(canvas);
 
     final src = Rect.fromLTWH(
@@ -48,8 +59,8 @@ class Bird {
     final imageFill = _fillPreservingAspectRatio(Size(width, height),
         Size(image.width.toDouble(), image.height.toDouble()));
     final dst = Rect.fromLTWH(
-      margins.left,
-      margins.top,
+      position.dx,
+      position.dy,
       imageFill.width,
       imageFill.height,
     );
