@@ -10,25 +10,58 @@ final _backgroundPaint = Paint()
 
 enum Direction { Left, Right, Up, Down }
 
+const _stepDelta = 50.0;
+
 class Bird {
   final Image image;
   final Offset origin;
   Direction currentDirection;
+  bool _animating;
+
   Size _size;
 
   Offset position;
 
-  Bird({@required this.image, @required this.origin}) {
+  Bird({@required this.image, @required this.origin})
+      : _animating = false,
+        currentDirection = null {
     position = Offset(origin.dx, origin.dy);
   }
+
+  double get width => _size.width - origin.dx;
+  double get height => _size.height - origin.dy;
 
   resize(Size size) {
     _size = size;
   }
 
-  update(double ts) {}
+  update(double ts) {
+    if (!_animating) return;
+    assert(currentDirection != null, 'cannot animate without direction');
+
+    switch (currentDirection) {
+      case Direction.Left:
+        position = position.translate(-_stepDelta, 0);
+        break;
+      case Direction.Right:
+        position = position.translate(_stepDelta, 0);
+        break;
+      case Direction.Up:
+        position = position.translate(0, -_stepDelta);
+        break;
+      case Direction.Down:
+        position = position.translate(0, _stepDelta);
+        break;
+    }
+    if (this._outOfBounds()) {
+      _animating = false;
+      currentDirection = null;
+      position = origin;
+    }
+  }
 
   void moveBy(Offset delta) {
+    if (_animating) return;
     currentDirection = this._determineDirection();
     position += delta;
   }
@@ -37,9 +70,16 @@ class Bird {
     if (currentDirection == null) {
       position = origin;
     } else {
-      debugPrint('dir: $currentDirection');
-      position = origin;
+      _animating = true;
     }
+  }
+
+  bool _outOfBounds() {
+    const percent = 0.8 * 2;
+    return (position.dx < (-width * percent)) ||
+        (position.dx > (width * percent)) ||
+        (position.dy < (-height * percent)) ||
+        (position.dy > (height * percent));
   }
 
   Direction _determineDirection() {
@@ -68,8 +108,6 @@ class Bird {
   }
 
   render(Canvas canvas) {
-    final width = _size.width - origin.dx;
-    final height = _size.height - origin.dy;
     _debugCanvas(canvas);
 
     final src = Rect.fromLTWH(
